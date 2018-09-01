@@ -1,0 +1,220 @@
+%!TEX program = xelatex
+%使用xelatex,使用unicode,对中文支持的最好.记得文档另存为uft-8格式.
+
+%默认字体大小12,页面大小A4,标题单独一页
+\documentclass[12pt,a4pape，titlepager]{article} 
+\usepackage{fontspec}   %字体
+\usepackage{color}
+\usepackage{xeCJK}  %中文
+\usepackage{indentfirst} %首行缩进
+\usepackage{hyperref} %超链接
+\usepackage{titleps} %页面控制
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\setlength{\parindent}{2em}% 首行缩进两个字符
+
+
+\usepackage{multirow}
+\usepackage{makecell} 
+\renewcommand\theadfont{\bfseries} %表头
+
+\setmainfont{Times New Roman}   %英文字体
+\setCJKmainfont[BoldFont=MicrosoftYaHei]{MicrosoftYaHei} %中文字体 
+
+%蓝色斜体
+\newcommand{\bluefont}[1]{\textcolor{blue}{\emph{[#1]}}}
+
+%页眉页脚
+\pagestyle{fancy}
+\fancyhead[L]{\footnotesize XXX软件概要说明书 \\}
+\fancyhead[R]{\footnotesize \today \\}
+\fancyfoot[L]{\footnotesize 机密文档，严禁外传}
+\fancyfoot[R]{\footnotesize 第\thepage 页}
+
+
+\title{XXX产品软件设计概要书}
+\date{\today}
+\author{XXX}
+
+\begin{document}
+		
+	\maketitle
+	\thispagestyle{empty}
+	\newpage
+	\setcounter{page}{1}
+	\begin{center}
+		\par 文档历史发放及记录 \\ 
+		\begin{tabular}{|c|c|c|c|c|c|} 
+		
+			\hline
+			\thead{序号} & 变更（+/-）说明 & 作者 & 版本号 & 日期 & 批准\\ 
+			\hline
+			1 & & & & & \\
+			\hline
+			 & & & & & \\
+			\hline
+			 & & & & & \\
+			\hline
+			 & & & & & \\
+			\hline
+			 & & & & & \\
+			\hline
+			 & & & & & \\
+			\hline
+			 & & & & & \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\newpage
+	\tableofcontents % 目录
+	\newpage
+	\section{引言}
+	\subsection{背景}{
+		\bluefont{
+			本文档的简要功能说明。
+		} \par
+		\bluefont{
+			本文档适用于哪些人员、哪些项目、哪些领域等。
+		} \par
+		\bluefont{
+			简要说明该产品的市场背景和主要特点。
+		}
+		
+		
+	}
+	\subsection{产品信息}
+			 产品名称：
+		\par 产品型号：
+	\subsection{软件名称}{
+		\bluefont{
+			说明本文档对应的软件的正式名称和版本号，或各部分的文件名和版本号。
+		}
+	}
+	\subsection{术语和缩略图}{
+		\bluefont{对文中使用的术语和缩略语进行说明} \par
+		\resizebox{\linewidth}{15mm}{ %调整宽高
+			\begin{tabular}{ccc}
+				\hline
+				\hline
+				\thead{缩略语/术语} & 全称 & 说明 \\  
+				\hline
+				 & &   \\ 
+				\hline
+				 & &   \\
+				\hline
+				 & &   \\
+				\hline
+				\hline
+			\end{tabular}%表
+		}	
+	}
+	\subsection{参考资料}{
+		\bluefont{编写本文档时引用或参考的文档资料、有关标准等。}
+	}
+	\section{总体设计}
+	\subsection{需求规定}{
+		\bluefont{说明对本系统的主要的输入输出项目、处理的功能性能要求。}
+	}
+	\subsection{运行环境}{
+		\bluefont{简要地说明对本系统的运行环境（包括硬件环境和支持环境）的规定}
+	}
+	\subsection{开发环境}{
+		\bluefont{详细说明开发和调试/测试该软件所需的硬件环境和软件环境。}
+	}
+	\subsection{设计思想}{
+		\bluefont{针对需求，说明软件的全局设计思想（如面向实时、面向对象、面向数据、事件驱动等）和实现方法。}
+	}
+	\subsection{系统结构}{
+		\bluefont{用一览表及框图的形式说明本系统的系统元素（各层模块、子程序、公用程序等）的划分，扼要说明每个系统元素的标识符和功能，分层次地给出各元素之间的关系（控制、顺序、信号传递等关系。）}
+	}
+	\subsection{处理流程}{
+		\bluefont{说明本系统的处理流程，包括信息处理流程、功能实现过程、资源调配过程和进程控制流程等。硬使用图表的形式说明。}
+	}
+	\subsection{功能实现与模块关系}{
+		\bluefont{用如下矩阵图说明各项功能需求的实现同各模块的分配关系：}\\ \\
+		\resizebox{\linewidth}{15mm}{
+		\begin{tabular}{c|c|c|c|c}
+			\hline
+			 & 模块1 & 模块2 & ... & 模块n \\
+			\hline
+			功能需求1 & √ & & &  \\ 
+			\hline
+			功能需求2 & & √  & & \\
+			\hline
+			... & & & &  \\
+			\hline
+			功能需求n & & & & √ \\
+			\hline
+		\end{tabular}%表
+	}
+	\subsection{模块开发方式说明}{
+		\bluefont{用列表说明各模块的开发方式（新开发、移植、改进、直接使用、外协开发等）。}
+	}
+	}	
+	
+	\section{接口设计}
+	\subsection{外部接口}
+	\subsubsection{用户界面}{
+		\bluefont{说明软件的用户界面设计要求。}
+	}
+	\subsubsection{硬件接口}{
+		\bluefont{陈述软件产品与系统硬件设备之间每一个接口的逻辑特点。还可能包括如下事宜: 要支持什么样的设备，如何支持这些设备，如何约定等。}
+	}
+	\subsubsection{软件接口}{
+		\bluefont{说明本系统同外界的所有软件接口、本系统与各支持软件之间的接口关系。}
+	}
+	\subsubsection{通讯接口}{
+		\bluefont{说明各种通讯接口。例如串口协议、局部网络协议等。}
+	}
+	\subsection{内部接口}{
+		\bluefont{说明软件内部各模块之间主要的信息交换或控制接口以及这些接口的作用。}}
+	
+	\section{运行设计}{
+		\bluefont{说明软件的运行控制设计，包括有关中断结构、进程控制、执行顺序、程序状态转换等的设计思想，并说明采用这些设计思想的原因。对于实时处理系统或交互系统来说，该部分的设计思想非常重要。}
+	}
+	
+	\section{属性设计}
+	\subsection{性能}{
+		\bluefont{说明对于该产品的性能要求，如：开机时间、升级时间、应用启动时间、换台时间、遥控器和前面板按键的响应速度等。}
+	}
+	\subsection{可靠性}{
+		\bluefont{软件的可靠性指在硬件稳定的条件下，经过长时间运行和各种误操作输入（不含硬件误操作）情况下的稳定程度，其中主要包括故障处理能力、边界值处理能力和误操作屏蔽能力等。说明设计中保证可靠性的设计方案。}
+	}
+	\subsection{安全性}{
+		\bluefont{这里指的是保护软件的要素，以防止各种非法的访问、使用，修改、破坏或者泄密等。]包括数据安全性和网络安全性等。}
+	}
+	\subsection{可维护性}{
+		\bluefont{说明为了系统维护的方便而在程序内部设计中作出的安排，包括在程序中专门安排用于系统的检查与维护的检测点和专用模块。可维护性包括可移植性、可修改性、可扩充性等。可移植性是指在不同的硬件或软件平台上移植的方便程度；可修改性指软件的可读程度和软件出现问题时修改的方便性；可扩充性指软件对外接口和内部功能扩展的灵活性。说明保证软件可维护性的设计措施。}
+	}
+	
+	\section{逻辑数据结构}
+	\subsection{逻辑结构设计要点}{
+		\bluefont{包括常规的数据结构、被封装的数据结构（对象）和数据库（如果有的话）。}
+	}
+	\subsection{逻辑结构设计要点}{\bluefont
+		{采用表格说明上述数据结构与主要软件模块之间的关系。软件模块与这些数据结构的关系包括创建（Create），更新（Update），读出（Read）和发消息（Send Message）等。}
+	}
+	
+	\section{ 物理数据结构}
+	\subsection{ FLASHROM的分配}{
+		\bluefont{描述FLASHROM的地址分配}
+	}
+
+	\subsection{ RAM的分配} 
+	\subsection{ NVROM的分配}
+	\subsection{ IC卡的地址分配[根据项目可选]} 
+	
+	\section{系统出错处理}
+	\par{{\bluefont{
+			用一览表的方式说明每种可能的出错或故障情况出现时，系统输出信息的形式、含意及对这些情况的处理设计。可能出现的出错类别包括接收到错误数据、硬件出现故障和程序进入非正常状态等情况。}}}
+	
+	\section{系统调试与测试方法}
+	\subsection{ 调试方法} {
+		\bluefont{简要说明软件开发过程中的基本调试方法。}
+	}
+	\subsection{ 测试方法} {
+		\bluefont{简要说明软件基本成形后对其进行测试的基本方法。}
+	}
+\end{document}
